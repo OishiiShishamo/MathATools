@@ -21,7 +21,7 @@ using vvll = std::vector<vll>;
 
 namespace math_a_tools {
     namespace set {
-        vll L_Fill(ll min, ll max) {
+        vll LFill(ll min, ll max) {
             vll res;
             FOR (i, min, max + 1) res.EB(i);
             return res;
