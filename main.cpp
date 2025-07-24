@@ -19,8 +19,13 @@ using vvll = std::vector<vll>;
 #define PSORT(v, fs) std::sort(ALL(v), [](const auto& a, const auto& b) { return a.fs < b.fs; })
 #define PRSORT(v, fs) std::sort(RALL(v), [](const auto& a, const auto& b) { return a.fs < b.fs; })
 
-namespace math_a {
+namespace math_a_tools {
     namespace set {
+        vll L_Fill(ll min, ll max) {
+            vll res;
+            FOR (i, min, max + 1) res.EB(i);
+            return res;
+        }
         vll Cup(const vll& a, const vll& b) {
             vll s_a = a, s_b = b;
             std::sort(ALL(s_a));
@@ -47,34 +52,23 @@ namespace math_a {
             std::set_difference(ALL(s_u), ALL(s_a), std::back_inserter(res));
             return res;
         }
+
+        void Show(const vll& a) {
+            if (a.empty()) {
+                std::cout << "Null" << std::endl;
+            }
+            else {
+                for (const auto& x : a) {
+                    std::cout << x << std::endl;
+                }
+            }
+        }
     }
 }
 
 int main() {
+    using namespace math_a_tools;
     std::cin.tie(nullptr);
     std::ios::sync_with_stdio(false);
-    vll u, a, b, c, res;
-    FOR(i, 1, 11) {
-        u.EB(i);
-        if (i % 2 == 0) {
-            a.EB(i);
-        }
-        if (i % 3 == 0) {
-            b.EB(i);
-        }
-        if (i % 4 == 0) {
-            c.EB(i);
-        }
-    }
-    res = math_a::set::Cup(math_a::set::Not(a, u), math_a::set::Not(c, u));
-    std::sort(ALL(res));
-    if (res.empty()) {
-        std::cout << "Null" << std::endl;
-    }
-    else {
-        for (const auto& x : res) {
-            std::cout << x << std::endl;
-        }
-    }
     return 0;
 }
